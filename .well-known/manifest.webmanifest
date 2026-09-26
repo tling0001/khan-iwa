@@ -4,7 +4,8 @@
   "start_url": "/",
   "name": "Khan Academy",
   "short_name": "Khan Academy",
-  "version": "1.0.1",
+  "version": "1.0.2",
+  "update_manifest_url": "https://github.com/tling0001/khan-iwa/raw/refs/heads/main/update_manifest.json",
   "display": "standalone",
   "display_override": [
     {
