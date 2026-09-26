@@ -1,5 +1,5 @@
 let startTime = 0;
-const MIN_SPLASH_TIME_MS = 1500;
+const MIN_SPLASH_TIME_MS = 2000;
 
 function launchTargetWindow() {
   const childWindow = window.open("/unframed/window.html", "_blank");
