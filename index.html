@@ -5,45 +5,82 @@
   <script type="module" src="/launcher.js"></script>
   <link rel="manifest" href="/.well-known/manifest.webmanifest" />
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: system-ui, -apple-system, sans-serif;
-      background: #252531;
-      color: #ffffff;
+      width: 100vw;
       height: 100vh;
+      background: #ffffff;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 16px;
-      text-align: center;
-      padding: 20px;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      overflow: hidden;
+      user-select: none;
     }
-    .bold { font-weight: bold; }
+
+    .splash-container {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .splash-logo {
+      width: 64px;
+      height: 64px;
+      object-fit: contain;
+    }
+
+    .splash-title {
+      font-size: 32px;
+      font-weight: 700;
+      color: #21242c;
+      letter-spacing: -0.5px;
+    }
+
+    #fallback-controls {
+      display: none;
+      position: absolute;
+      bottom: 24px;
+      text-align: center;
+    }
+
+    .bold {
+      font-weight: bold;
+    }
+
     button {
-      padding: 12px 24px;
+      padding: 10px 20px;
       border-radius: 6px;
       border: none;
       background: #14bf96;
       color: white;
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 600;
       cursor: pointer;
     }
-    button:disabled { background: #555555; cursor: not-allowed; }
-    #fallback-controls { display: none; }
+
+    button:disabled {
+      background: #555555;
+      cursor: not-allowed;
+    }
   </style>
 </head>
 <body>
-  <h2>Khan Academy Launcher</h2>
-  
-  <div id="fallback-controls">
-    <p>Window management permission state: <span id="permission-state" class="bold">UNKNOWN</span></p>
-    <p style="margin-top: 0.5rem; margin-bottom: 1.5rem; max-width: 360px; color: #a0a0b0;">
-      Permission is required to automatically launch in borderless mode.
-    </p>
+  <div class="splash-container">
+    <img src="/splashscreen.png" alt="Khan Academy Logo" class="splash-logo" />
+    <h1 class="splash-title">Khan Academy</h1>
+  </div>
 
-    <button id="permission-prompt">Prompt permission</button>
+  <div id="fallback-controls">
+    <p style="color: #666; font-size: 13px; margin-bottom: 8px;">
+      Window management state: <span id="permission-state" class="bold">UNKNOWN</span>
+    </p>
+    <button id="permission-prompt">Grant Window Permission</button>
   </div>
 </body>
 </html>

@@ -1,3 +1,24 @@
+function launchTargetWindow() {
+  const MIN_SPLASH_TIME_MS = 1000;
+  const startTime = Date.now();
+
+  const childWindow = window.open("/unframed/window.html", "_blank");
+
+  if (childWindow) {
+    const elapsedTime = Date.now() - startTime;
+    const remainingTime = Math.max(0, MIN_SPLASH_TIME_MS - elapsedTime);
+
+    setTimeout(() => {
+      window.close();
+    }, remainingTime);
+  } else {
+    const fallbackContainer = document.getElementById("fallback-controls");
+    const promptBtn = document.getElementById("permission-prompt");
+    if (fallbackContainer) fallbackContainer.style.display = "block";
+    if (promptBtn) promptBtn.disabled = true;
+  }
+}
+
 function onPermissionChanged(status) {
   const stateElem = document.getElementById("permission-state");
   const promptBtn = document.getElementById("permission-prompt");
@@ -6,19 +27,8 @@ function onPermissionChanged(status) {
   if (stateElem) stateElem.innerText = status.state;
 
   if (status.state === "granted") {
-    // Launch the unframed window once
-    const childWindow = window.open("/unframed/window.html", "_blank");
-
-    if (childWindow) {
-      // Close the launcher window after opening the target window
-      window.close();
-    } else {
-      // If blocked by browser popup policy, reveal manual controls
-      if (fallbackContainer) fallbackContainer.style.display = "block";
-      if (promptBtn) promptBtn.disabled = true;
-    }
+    launchTargetWindow();
   } else {
-    // Permission pending/denied; show manual setup controls
     if (fallbackContainer) fallbackContainer.style.display = "block";
     if (promptBtn) promptBtn.disabled = false;
   }
@@ -26,7 +36,6 @@ function onPermissionChanged(status) {
 
 document.addEventListener("DOMContentLoaded", () => {
   const promptBtn = document.getElementById("permission-prompt");
-  const closeBtn = document.getElementById("close-window-button");
 
   if (promptBtn) {
     promptBtn.addEventListener("click", () => {
@@ -36,14 +45,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  if (closeBtn) {
-    closeBtn.addEventListener("click", () => window.close());
-  }
-
   if ('permissions' in navigator) {
     navigator.permissions.query({ name: "window-management" }).then((status) => {
       onPermissionChanged(status);
       status.onchange = () => onPermissionChanged(status);
     });
+  } else {
+    launchTargetWindow();
   }
 });
