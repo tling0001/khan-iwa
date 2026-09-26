@@ -5,7 +5,7 @@
   "name": "Khan Academy",
   "short_name": "Khan Academy",
   "description": "IWA for Khan Academy",
-  "version": "1.0.5.1",
+  "version": "1.0.5.2",
   "update_manifest_url": "https://github.com/tling0001/khan-iwa/raw/refs/heads/main/update_manifest.json",
   "display": "standalone",
   "display_override": [
@@ -19,8 +19,8 @@
     },
     "borderless"
   ],
-  "theme_color": "#252531",
-  "background_color": "#252531",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
   "permissions_policy": {
     "window-management": [
       "self"
