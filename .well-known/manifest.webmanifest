@@ -1,0 +1,45 @@
+{
+  "id": "/",
+  "scope": "/",
+  "start_url": "/",
+  "name": "Khan Academy",
+  "short_name": "Khan Academy",
+  "version": "1.0.0",
+  "display": "standalone",
+  "display_override": [
+    {
+      "display": "unframed",
+      "url_patterns": [
+        {
+          "pathname": "/unframed/*"
+        }
+      ]
+    },
+    "borderless"
+  ],
+  "theme_color": "#252531",
+  "background_color": "#252531",
+  "permissions_policy": {
+    "window-management": [
+      "self"
+    ],
+    "controlled-frame": [
+      "self"
+    ],
+    "fullscreen": [
+      "*"
+    ],
+    "cross-origin-isolated": [
+      "self"
+    ]
+  },
+  "isolated_storage": true,
+  "icons": [
+    {
+      "src": "/icon.png",
+      "type": "image/png",
+      "sizes": "400x400",
+      "purpose": "any"
+    }
+  ]
+}

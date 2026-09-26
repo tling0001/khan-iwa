@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <script type="module" src="/launcher.js"></script>
+  <link rel="manifest" href="/.well-known/manifest.webmanifest" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: #252531;
+      color: #ffffff;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      text-align: center;
+      padding: 20px;
+    }
+    .bold { font-weight: bold; }
+    button {
+      padding: 12px 24px;
+      border-radius: 6px;
+      border: none;
+      background: #14bf96;
+      color: white;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    button:disabled { background: #555555; cursor: not-allowed; }
+    #fallback-controls { display: none; }
+  </style>
+</head>
+<body>
+  <h2>Khan Academy Launcher</h2>
+  
+  <div id="fallback-controls">
+    <p>Window management permission state: <span id="permission-state" class="bold">UNKNOWN</span></p>
+    <p style="margin-top: 0.5rem; margin-bottom: 1.5rem; max-width: 360px; color: #a0a0b0;">
+      Permission is required to automatically launch in borderless mode.
+    </p>
+
+    <button id="permission-prompt">Prompt permission</button>
+  </div>
+</body>
+</html>

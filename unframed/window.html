@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <script type="module" src="/unframed/unframed.js"></script>
+  <link rel="manifest" href="/.well-known/manifest.webmanifest" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    html, body {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background: #252531;
+      position: relative;
+    }
+
+    /* Draggable title bar overlay */
+    .draggable-bar {
+      width: 100%;
+      height: 32px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 99998;
+      app-region: drag;
+      -webkit-app-region: drag;
+      pointer-events: auto;
+    }
+
+    /* Window Controls Overlay Container */
+    .window-controls {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 32px;
+      z-index: 99999;
+      display: flex;
+      align-items: center;
+      app-region: no-drag;
+      -webkit-app-region: no-drag;
+    }
+
+    .control-btn {
+      width: 44px;
+      height: 32px;
+      background: transparent;
+      border: none;
+      font-family: monospace, sans-serif;
+      font-size: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+
+    /* Light Mode (Default): Black buttons */
+    @media (prefers-color-scheme: light) {
+      .control-btn {
+        color: #000000;
+      }
+      .control-btn:hover {
+        background: rgba(0, 0, 0, 0.12);
+      }
+    }
+
+    /* Dark Mode: White buttons */
+    @media (prefers-color-scheme: dark) {
+      .control-btn {
+        color: #ffffff;
+      }
+      .control-btn:hover {
+        background: rgba(255, 255, 255, 0.15);
+      }
+    }
+
+    /* Close button hover style remains red across modes */
+    .control-btn.close-btn:hover {
+      background: #e81123 !important;
+      color: #ffffff !important;
+    }
+
+    /* Underlying web content container */
+    controlledframe {
+      width: 100vw;
+      height: 100vh;
+      border: none;
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+  <!-- Drag Handle Overlay -->
+  <div class="draggable-bar"></div>
+
+  <!-- Absolute Window Controls Overlay -->
+  <div class="window-controls">
+    <button id="min-btn" class="control-btn" title="Minimize">&#x2212;</button>
+    <button id="max-btn" class="control-btn" title="Maximize">&#x25A2;</button>
+    <button id="close-btn" class="control-btn close-btn" title="Close">&#x2715;</button>
+  </div>
+
+  <!-- Khan Academy Controlled Frame -->
+  <controlledframe src="https://classroom.khanacademy.org" partition="persist:khan"></controlledframe>
+</body>
+</html>
