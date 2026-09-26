@@ -1,4 +1,4 @@
-const MIN_SPLASH_TIME_MS = 2000;
+const MIN_SPLASH_TIME_MS = 1250;
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
