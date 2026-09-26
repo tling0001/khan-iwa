@@ -4,7 +4,7 @@
   "start_url": "/",
   "name": "Khan Academy",
   "short_name": "Khan Academy",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "display": "standalone",
   "display_override": [
     {
