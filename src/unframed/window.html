@@ -15,7 +15,7 @@
       position: relative;
     }
 
-    /* Native Titlebar Drag Area using Web App Overlay standards */
+    /* Transparent Drag Zone overlay at the top 32px */
     .draggable-bar {
       position: absolute;
       top: 0;
@@ -23,11 +23,12 @@
       width: calc(100% - 44px);
       height: 32px;
       z-index: 99998;
+      background: transparent;
       app-region: drag;
       -webkit-app-region: drag;
     }
 
-    /* Close Button Container */
+    /* Window Controls Overlay Container */
     .window-controls {
       position: absolute;
       top: 0;
@@ -69,29 +70,29 @@
       color: #ffffff !important;
     }
 
-    /* Offset full webview by 32px to expose the drag area at the top */
+    /* True Fullscreen Webview */
     controlledframe {
       width: 100vw;
-      height: calc(100vh - 32px);
+      height: 100vh;
       border: none;
       display: block;
       position: absolute;
-      top: 32px;
+      top: 0;
       left: 0;
       z-index: 1;
     }
   </style>
 </head>
 <body>
-  <!-- Drag Zone -->
-  <div class="draggable-bar"></div>
+  <!-- Dynamic Drag Bar -->
+  <div class="draggable-bar" id="drag-bar"></div>
 
   <!-- Close Window Button -->
   <div class="window-controls">
     <button id="close-btn" class="control-btn close-btn" title="Close">&#x2715;</button>
   </div>
 
-  <!-- Main Web Content -->
+  <!-- Main Fullscreen Web Content -->
   <controlledframe src="https://classroom.khanacademy.org" partition="persist:khan" allowfullscreen></controlledframe>
 </body>
 </html>
