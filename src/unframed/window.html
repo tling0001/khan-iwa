@@ -15,19 +15,6 @@
       position: relative;
     }
 
-    /* Transparent Drag Zone overlay at the top 32px */
-    .draggable-bar {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: calc(100% - 44px);
-      height: 32px;
-      z-index: 99998;
-      background: transparent;
-      app-region: drag;
-      -webkit-app-region: drag;
-    }
-
     /* Window Controls Overlay Container */
     .window-controls {
       position: absolute;
@@ -37,8 +24,26 @@
       z-index: 99999;
       display: flex;
       align-items: center;
-      app-region: no-drag;
-      -webkit-app-region: no-drag;
+    }
+
+    /* Draggable square handle placed next to close button */
+    .drag-square {
+      width: 32px;
+      height: 32px;
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: grab;
+      app-region: drag;
+      -webkit-app-region: drag;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+
+    .drag-square svg {
+      width: 14px;
+      height: 14px;
+      opacity: 0.6;
     }
 
     .control-btn {
@@ -53,14 +58,22 @@
       align-items: center;
       justify-content: center;
       transition: background 0.15s ease, color 0.15s ease;
+      app-region: no-drag;
+      -webkit-app-region: no-drag;
     }
 
+    /* Light Mode Styles */
     @media (prefers-color-scheme: light) {
+      .drag-square svg { fill: #000000; }
+      .drag-square:hover { background: rgba(0, 0, 0, 0.08); }
       .control-btn { color: #000000; }
       .control-btn:hover { background: rgba(0, 0, 0, 0.12); }
     }
 
+    /* Dark Mode Styles */
     @media (prefers-color-scheme: dark) {
+      .drag-square svg { fill: #ffffff; }
+      .drag-square:hover { background: rgba(255, 255, 255, 0.12); }
       .control-btn { color: #ffffff; }
       .control-btn:hover { background: rgba(255, 255, 255, 0.15); }
     }
@@ -70,7 +83,7 @@
       color: #ffffff !important;
     }
 
-    /* True Fullscreen Webview */
+    /* Fullscreen Webview with full click capability */
     controlledframe {
       width: 100vw;
       height: 100vh;
@@ -84,15 +97,23 @@
   </style>
 </head>
 <body>
-  <!-- Dynamic Drag Bar -->
-  <div class="draggable-bar" id="drag-bar"></div>
-
-  <!-- Close Window Button -->
+  <!-- Top Right Overlay (Drag Square + Close Button) -->
   <div class="window-controls">
+    <div class="drag-square" title="Drag window">
+      <!-- 6-dot grip icon -->
+      <svg viewBox="0 0 16 16">
+        <circle cx="5" cy="3" r="1.5" />
+        <circle cx="11" cy="3" r="1.5" />
+        <circle cx="5" cy="8" r="1.5" />
+        <circle cx="11" cy="8" r="1.5" />
+        <circle cx="5" cy="13" r="1.5" />
+        <circle cx="11" cy="13" r="1.5" />
+      </svg>
+    </div>
     <button id="close-btn" class="control-btn close-btn" title="Close">&#x2715;</button>
   </div>
 
-  <!-- Main Fullscreen Web Content -->
+  <!-- Fullscreen Web Content -->
   <controlledframe src="https://classroom.khanacademy.org" partition="persist:khan" allowfullscreen></controlledframe>
 </body>
 </html>
