@@ -11,21 +11,20 @@
       width: 100vw;
       height: 100vh;
       overflow: hidden;
-      background: #252531;
+      background: #ffffff;
       position: relative;
     }
 
-    /* Draggable title bar overlay */
+    /* JS-managed Drag Bar Overlay */
     .draggable-bar {
-      width: 100%;
+      width: calc(100% - 44px);
       height: 32px;
       position: absolute;
       top: 0;
       left: 0;
       z-index: 99998;
-      app-region: drag;
-      -webkit-app-region: drag;
-      pointer-events: auto;
+      background: transparent;
+      cursor: default;
     }
 
     /* Window Controls Overlay Container */
@@ -55,33 +54,22 @@
       transition: background 0.15s ease, color 0.15s ease;
     }
 
-    /* Light Mode (Default): Black buttons */
     @media (prefers-color-scheme: light) {
-      .control-btn {
-        color: #000000;
-      }
-      .control-btn:hover {
-        background: rgba(0, 0, 0, 0.12);
-      }
+      .control-btn { color: #000000; }
+      .control-btn:hover { background: rgba(0, 0, 0, 0.12); }
     }
 
-    /* Dark Mode: White buttons */
     @media (prefers-color-scheme: dark) {
-      .control-btn {
-        color: #ffffff;
-      }
-      .control-btn:hover {
-        background: rgba(255, 255, 255, 0.15);
-      }
+      .control-btn { color: #ffffff; }
+      .control-btn:hover { background: rgba(255, 255, 255, 0.15); }
     }
 
-    /* Close button hover style remains red across modes */
     .control-btn.close-btn:hover {
       background: #e81123 !important;
       color: #ffffff !important;
     }
 
-    /* Underlying web content container */
+    /* Underlying Fullscreen Content */
     controlledframe {
       width: 100vw;
       height: 100vh;
@@ -95,15 +83,15 @@
   </style>
 </head>
 <body>
-  <!-- Drag Handle Overlay -->
-  <div class="draggable-bar"></div>
+  <!-- Custom Drag Bar -->
+  <div class="draggable-bar" id="drag-bar"></div>
 
-  <!-- Absolute Window Controls Overlay -->
+  <!-- Close Button Container -->
   <div class="window-controls">
     <button id="close-btn" class="control-btn close-btn" title="Close">&#x2715;</button>
   </div>
 
-  <!-- Khan Academy Controlled Frame with allowfullscreen -->
+  <!-- Main Web View -->
   <controlledframe src="https://classroom.khanacademy.org" partition="persist:khan" allowfullscreen></controlledframe>
 </body>
 </html>
