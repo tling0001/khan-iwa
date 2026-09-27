@@ -14,3 +14,6 @@
 *   Paste in the the addresss 
     `https://github.com/tling0001/khan-iwa/raw/refs/heads/main/update_manifest.json`
 *   Click "fetch" and "install"
+
+deno run -A npm:wbn/wbn --dir khan-iwa/src -o unsigned.wbn
+deno run -A npm:wbn-sign/wbn-sign -i unsigned.wbn -k khan_private_key.pem -o khan-academy.swbn
